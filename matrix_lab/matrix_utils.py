@@ -1,17 +1,21 @@
 import sys
 from pathlib import Path
 
+
 def print_matrix(matrix):
     if not matrix:
         raise ValueError("Пустая матрица")
+    
     width = 0
-    total = 0
+    
     for row in matrix:
-        total += len(row)
+    
         for x in row:
             width = max(width, len(str(x)))
+    
     for row in matrix:
         print(" ".join(f"{x:>{width}}" for x in row))
+
 
 def write_matrix_to_file(matrix, filename):
     path = Path(filename)
@@ -19,20 +23,27 @@ def write_matrix_to_file(matrix, filename):
 
     if not matrix:
         raise ValueError("Пустая матрица")
+    
     width = 0
     total = 0
-    format_matrix = ''
+    format_matrix = []
+    
     for row in matrix:
         total += len(row)
+    
         for x in row:
             width = max(width, len(str(x)))
+    
     for row in matrix:
         format_matrix.append(" ".join(f"{x:>{width}}" for x in row))
+    
     format_matrix = "\n".join(format_matrix)
+    
     with open(path, "w", encoding="utf-8") as file:
         file.write(f"{len(matrix)} {len(matrix[0])}\n")
         file.write(format_matrix)
         file.write("\n")
+
 
 def read_number(value):
     try:
