@@ -97,7 +97,7 @@ def add(a, b):
 def subtract(a, b):
     global OPS_COUNT
     if shape_matrix(a) != shape_matrix(b):
-        raise ValueError("Матрицы разного рамера нельзя вычитать")
+        raise ValueError("Матрицы разного размера нельзя вычитать")
 
     result = []
     
@@ -189,7 +189,7 @@ def identity(n):
     return result
 
 
-def power(matrix, k, * ,mod=None):
+def power(matrix, k, *, mod=None):
     global OPS_COUNT
 
     rows, cols = shape_matrix(matrix)

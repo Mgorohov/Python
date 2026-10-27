@@ -25,11 +25,9 @@ def write_matrix_to_file(matrix, filename):
         raise ValueError("Пустая матрица")
     
     width = 0
-    total = 0
     format_matrix = []
     
     for row in matrix:
-        total += len(row)
     
         for x in row:
             width = max(width, len(str(x)))
@@ -100,3 +98,55 @@ def read_matrix_from_console():
 def read_matrix_from_file(filename):
     with open(filename, "r", encoding="utf-8") as file:
         return read_matrix(file)
+
+
+def min_max_positions(matrix):
+    if not matrix or not matrix[0]:
+        raise ValueError("Матрица пустая")
+
+    min_pos = (0, 0)
+    max_pos = (0, 0)
+
+    min_value = matrix[0][0]
+    max_value = matrix[0][0]
+
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i])):
+            value = matrix[i][j]
+
+            if value < min_value:
+                min_value = value
+                min_pos = (i, j)
+
+            if value > max_value:
+                max_value = value
+                max_pos = (i, j)
+
+    return min_pos, max_pos
+
+
+def matrix_stats(matrix):
+    numbers = []
+
+    for row in matrix:
+        for number in row:
+            numbers.append(number)
+
+    if not numbers:
+        raise ValueError("Матрица пустая")
+
+    counts = {}
+
+    for number in numbers:
+        counts[number] = counts.get(number, 0) + 1
+
+    most_common = max(counts, key=counts.get)
+
+    return {
+        "min": min(numbers),
+        "max": max(numbers),
+        "sum": sum(numbers),
+        "unique_count": len(set(numbers)),
+        "most_common": most_common
+    }
+
