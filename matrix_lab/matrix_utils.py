@@ -100,7 +100,7 @@ def read_matrix_from_file(filename):
         return read_matrix(file)
 
 
-def min_max_positions(matrix):
+def min_max_positions(matrix: list[list[int | float]]) -> tuple[tuple[int, int], tuple[int, int]]:
     if not matrix or not matrix[0]:
         raise ValueError("Матрица пустая")
 
@@ -125,7 +125,7 @@ def min_max_positions(matrix):
     return min_pos, max_pos
 
 
-def matrix_stats(matrix):
+def matrix_stats(matrix: list[list[int | float]]) -> dict[str, int | float]:
     numbers = []
 
     for row in matrix:
